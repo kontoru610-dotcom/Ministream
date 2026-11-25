@@ -19,3 +19,23 @@ button{border:0;cursor:pointer;font:inherit;font-weight:750;border-radius:9px;pa
 .stats-grid span,.stats-grid strong{display:block}.stats-grid span{font-size:11px;color:#9aa8bf}.stats-grid strong{font-size:25px;margin-top:4px}
 .back{text-align:center;color:#9aa8bf;font-size:12px;margin:25px}.back a{color:#a8bcff}
 @media(max-width:480px){.panel{padding:16px}.stats-grid{gap:6px}.stats-grid div{padding:10px}.stats-grid strong{font-size:21px}}
+
+.upload-box {
+  display: block;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.upload-box input {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.upload-box button {
+  display: block;
+  width: 100%;
+}
+
