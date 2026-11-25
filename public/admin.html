@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Dashboard Admin - MiniStream</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">MINI<span>STREAM</span></a>
+    <a class="admin-link" href="/">Lihat website ↗</a>
+  </header>
+
+  <main class="admin-wrap">
+    <section id="loginPanel" class="panel login-panel">
+      <div class="eyebrow">AREA ADMIN</div>
+      <h1>Masuk dashboard</h1>
+      <p>Masukkan password admin yang dibuat di Cloudflare.</p>
+      <form id="loginForm">
+        <label>Password admin</label>
+        <input id="password" type="password" autocomplete="current-password" required placeholder="Password admin">
+        <button class="primary" type="submit">Masuk</button>
+      </form>
+      <div id="loginMessage" class="message"></div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="dash-heading">
+        <div><div class="eyebrow">PENGATURAN WEBSITE</div><h1>Dashboard</h1></div>
+        <button id="logout" class="secondary" type="button">Keluar</button>
+      </div>
+
+      <form id="settingsForm" class="panel">
+        <h2>Identitas website</h2>
+        <label>Judul website</label>
+        <input name="title" maxlength="100" required>
+        <label>Deskripsi</label>
+        <textarea name="description" rows="2" maxlength="300"></textarea>
+
+        <h2>Sumber video</h2>
+        <label>Jenis video</label>
+        <select name="video_type">
+          <option value="mp4">MP4</option>
+          <option value="hls">M3U8 / HLS</option>
+          <option value="youtube">YouTube / YouTube Live</option>
+        </select>
+        <label>URL video</label>
+        <input name="video_url" type="url" placeholder="https://...">
+        <p class="hint">MP4: link langsung berakhiran .mp4. HLS: link playlist .m3u8. YouTube: link video atau live.</p>
+
+        <h2>3 link referral</h2>
+        <p class="hint">Link akan dibuka bergantian ketika pengunjung menekan tombol “Buka rekomendasi berikutnya”.</p>
+        <label>Link referral 1</label>
+        <input name="referral_1" type="url" required>
+        <label>Link referral 2</label>
+        <input name="referral_2" type="url" required>
+        <label>Link referral 3</label>
+        <input name="referral_3" type="url" required>
+
+        <button class="primary" type="submit">Simpan perubahan</button>
+        <div id="saveMessage" class="message"></div>
+      </form>
+
+      <section class="panel stats-panel">
+        <div class="stats-head"><h2>Statistik klik referral</h2><button id="refreshStats" class="secondary" type="button">Muat ulang</button></div>
+        <div class="stats-grid">
+          <div><span>Link 1</span><strong id="stat1">0</strong></div>
+          <div><span>Link 2</span><strong id="stat2">0</strong></div>
+          <div><span>Link 3</span><strong id="stat3">0</strong></div>
+        </div>
+      </section>
+    </section>
+    <p class="back"><a href="/">← Kembali ke website</a></p>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>
