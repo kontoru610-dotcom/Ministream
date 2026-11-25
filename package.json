@@ -1,0 +1,14 @@
+{
+  "name": "ministream",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create ministream-db",
+    "db:migrate": "wrangler d1 migrations apply ministream-db --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
