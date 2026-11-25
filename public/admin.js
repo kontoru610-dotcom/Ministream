@@ -81,3 +81,58 @@ document.getElementById("logout").addEventListener("click", () => {
   loginPanel.classList.remove("hidden");
   document.getElementById("password").value = "";
 });
+
+const uploadButton = document.getElementById("uploadVideo");
+
+uploadButton.addEventListener("click", async () => {
+  const fileInput = document.getElementById("videoFile");
+  const message = document.getElementById("uploadMessage");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    message.textContent = "Pilih video MP4 terlebih dahulu.";
+    return;
+  }
+
+  if (!file.name.toLowerCase().endsWith(".mp4")) {
+    message.textContent = "File harus berformat MP4.";
+    return;
+  }
+
+  if (file.size > 95 * 1024 * 1024) {
+    message.textContent = "Ukuran video maksimal 95 MB.";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("video", file);
+
+  uploadButton.disabled = true;
+  message.textContent = "Sedang mengupload video...";
+
+  try {
+    const response = await fetch("/api/admin/upload", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${adminPassword}`
+      },
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Upload gagal.");
+    }
+
+    settingsForm.elements.namedItem("video_type").value = "mp4";
+    settingsForm.elements.namedItem("video_url").value = data.video_url;
+
+    message.textContent = "Upload berhasil! Tekan Simpan perubahan.";
+    fileInput.value = "";
+  } catch (error) {
+    message.textContent = error.message;
+  } finally {
+    uploadButton.disabled = false;
+  }
+});
