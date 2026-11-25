@@ -41,6 +41,16 @@
         <textarea name="description" rows="2" maxlength="300"></textarea>
 
         <h2>Sumber video</h2>
+        
+<div class="upload-box">
+  <h3>Upload video MP4</h3>
+  <input id="videoFile" type="file" accept="video/mp4,.mp4">
+  <button id="uploadVideo" class="primary" type="button">
+    Upload Video
+  </button>
+  <p id="uploadMessage" class="message"></p>
+</div>
+
         <label>Jenis video</label>
         <select name="video_type">
           <option value="mp4">MP4</option>
